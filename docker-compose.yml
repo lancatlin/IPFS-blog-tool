@@ -9,6 +9,9 @@ services:
             - ./www:/data/www
             - ./deploy.sh:/data/deploy.sh
         ports:
-            - "4001:4001"
-            - "8080:8080"
-            - "5001:5001"
+            - "${SWARM}:${SWARM}"
+            - "${API}:${API}"
+            - "${GATEWAY}:${GATEWAY}"
+        command: ipfs config Addresses.API /ip4/0.0.0.0/tcp/${API} &
+                    ipfs config Address.Gateway /ip4/0.0.0.0/tcp/${GATEWAY} &
+                    ipfs config Address.Swarm /ip4/0.0.0.0/tcp/${SWARM} 
