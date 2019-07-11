@@ -1,0 +1,14 @@
+version: "3"
+services:
+    ipfs:
+        image: ipfs/go-ipfs
+        working_dir: /data
+        volumes: 
+            - ./export:/export
+            - ./data:/data/ipfs
+            - ./www:/data/www
+            - ./deploy.sh:/data/deploy.sh
+        ports:
+            - "4001:4001"
+            - "8080:8080"
+            - "5001:5001"
